@@ -111,7 +111,7 @@ int psrfits_create(struct psrfits *pf) {
     if (*status) {
         fprintf(stderr, "Error creating psrfits file from template.\n");
         fits_report_error(stderr, *status);
-        exit(1);
+        return *status;
     }
 
     // Go to the primary HDU
