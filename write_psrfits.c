@@ -327,7 +327,10 @@ int psrfits_write_subint(struct psrfits *pf) {
             printf("Closing file '%s'\n", pf->filename);
             fits_close_file(pf->fptr, status);
         }
-        psrfits_create(pf);
+        *status = psrfits_create(pf);
+        if (*status) {
+            return *status;
+        }
     }
 
     row = pf->rownum;
